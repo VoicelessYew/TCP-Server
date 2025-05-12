@@ -1,5 +1,6 @@
 #include <iostream>
 #include <WinSock2.h>
+#include <ws2tcpip.h>
 
 using namespace std;
 
@@ -35,7 +36,7 @@ int main()
     address.sin_family = AF_INET;
     address.sin_addr.s_addr = inet_addr("127.0.0.1");
     address.sin_port = htons(55555);
-    if (connect(clientSocket, reinterpret_cast<SOCKADDR *>(&address), sizeof(address)) == SOCKET_ERROR)
+    if (connect(clientSocket, reinterpret_cast<SOCKADDR *>(&address), sizeof(address)) == SOCKET_ERROR) // connect to server with given address and port
     {
         cout << "Client: connect() - Failed to connect: \n";
         cout << WSAGetLastError() << endl;
