@@ -27,6 +27,10 @@ int main()
         cout << WSAGetLastError() << endl;
         WSACleanup();
     }
+    else
+    {
+        cout << "Socket is ok.\n";
+    }
     sockaddr_in address;
     address.sin_family = AF_INET;
     address.sin_addr.s_addr = inet_addr("127.0.0.1");
@@ -71,6 +75,7 @@ int main()
     {
         cout << "Server recv error: \n";
         cout << WSAGetLastError() << endl;
+        WSACleanup();
     }
     else
     {
@@ -84,11 +89,13 @@ int main()
     {
         cout << "Server send error: \n";
         cout << WSAGetLastError() << endl;
+        WSACleanup();
     }
     else
     {
         cout << "Server: Sent " << sentByteCount << " bytes.\n";
     }
+    WSACleanup();
 
     return 0;
 }
